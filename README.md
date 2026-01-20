@@ -12,7 +12,7 @@ As an aspiring Cybersecurity Engineer, this project is being built as a foundati
 
 ## How Will it Work?
 
-Picket will be a Security Automation Dashboard that will:
+Picket will start out as a Minimum Viable Project (MVP) Security Automation Dashboard that will:
 1. Take either a domain or an IP Address from the user via a React GUI
 2. Analyze that domain or ip address to determine whether it is risky or not by querying multiple threat intelligence APIs
 3. Store that domain/ip address and its score within the Firebase database (indicator value, indicator type, timestamp, API results, final risk score, and verdict)
