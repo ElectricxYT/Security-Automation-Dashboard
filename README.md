@@ -103,8 +103,13 @@ TBD
 ---
 
 ## Learning Journey
-### January 19, 2026
-Today, I began setting up my project. 
+### Day One
+On Day One, I began by planning how to approach and setup my project. 
+ - Because the first step is for a user to input either a domain or IP Address, I decided to start with setting up the backend of Picket.
+ - Like with my Password Strength Analyzer Project, I first brainstormed how the provided domain or IP Address's risk score would be calculated. I settled on a scale of "Low, Low-Medium, Medium, Medium-High, High" for its more intuitive and user friendly. The backend processes will equate all 5 with rule based lables (ex: if flagged by >= 4 venders, then risk score = Medium-High).
+ - The signals received from both APIs (Number of vendors flagging malicious, abuse confidence score, etc) will factor into the risk score of the domain/IP Address. As such, Picket assigns risk labels based on the presence and strength of known malicious indicators reported by trusted threat intelligence sources (VirusTotal and AbuseIPDB).
+ - I registered both a VirusTotal and AbuseIPDB account to gain access to both of their APIs. I then ran a test request to each of them and searched through the JSON responses for useful signals to use when calculating a domain/IP Address's risk score. 
+ - I learned what Node.js is (a free, open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser) and began 
 
 
 
@@ -145,12 +150,15 @@ TBD
 
 ## AI Usage
 
-I used ChatGPT as a development assistant to:
+To assist me in completing my project, I employed the help of ChatGPT. To ensure that I learned from this project, I set ChatGPT as my assistant and commited into its memory that I will be the one "calling the shots". I then forbade ChatGPT from providing me with full answers or writing out full code for me, and instructed it to instead lead me in the right direction when prompted. 
 
-* Brainstorm system architecture
+For this project, I used ChatGPT to:
+
+* Plan out the risk scoring approach 
 
 **Example:**
-I prompted ChatGPT to provide me with the strengths of both Firebase and MongoDB. I then completed further research to decide which database would be best for my project. 
+
+Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: "I want Picket to support both ip addresses and domains. That way not only will users be able to query safe websites to visit, but safe machines and users as well. With that in mind, let's focus on the risk scoring. I believe that scoring IPs and domains on a Low, Low-Medium, Medium, Medium-High, High scale would be best, for it is more user friendly than a number range."
 
 ---
 
