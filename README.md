@@ -44,12 +44,12 @@ Picket will use Firebase Firestore as its database to increase setup speed and m
 * React
 * TypeScript
 * HTML/CSS
-* Axios
 
 ### Backend
 
 * Node.js
 * Express
+* Axios
 * TypeScript
 
 ### Database
@@ -117,16 +117,60 @@ On Day One, I began by planning how to approach and setup my project.
    * Next, it was time to download Axios. To do this, I ran "npm install axios" in the Powershell terminal.
    * Finally, I stored my API key within an environmental variable so as to ensure confidentiality. So that Node can read the file in which I stored my API key, I installed dotenv. 
 ### Day Two
-On Day Two, I finished testing requests to both APIs and decided on which signals to use for risk scoring.
+On Day Two, I finished testing requests to both APIs, decided on which signals to use for risk scoring, and designed the risk scoring algorithm.
+ - After testing an API request to VirusTotal and receiving a long JSON output back, I scanned the output for useful signals to factor into the risk score.
+ - Originally, I started drafting how the risk score logic could work:
+   ```
+   Given (tested on 8.8.8.8, or Google):
+   
+   "last_analysis_stats": {
+   "malicious": 0,
+   "suspicious": 0,
+   "undetected": 31,
+   "harmless": 62,
+   "timeout": 0
+   }
+   "reputation": 527
 
+   //Risk scoring logic draft
+   If # of harmless > # of malicious, reputation > 0, and # of malicious is 0, risk == Low.
+   If # of harmless > # of malicious, reputation > 0, but # of malicious > 0, risk == Low-Medium.
+   If # of harmless is within +-10 of # of malicious and reputation is between -200 and 200 or # of malicious > 0 and # of suspicious > 0, risk == Medium.
+   If # of harmless < # of malicious and reputation < 0 and # of suspicious > 0, risk == Medium-High.
+   If harmless == 0 or # of malicious > 0 and # of suspicious > 0 and timeout > 0 and reputation < 0, risk == High.
+   ```
+   - The rationale behind this approach was tho use and blend multiple signals to mimic real threat scoring models and avoid single source errors.
+   - To learn about flaws with my logic, I prompted ChatGPT with "For the risk scoring, what logic flaws might I encounter with this risk scoring logic outline: [Risk scoring logic draft here]".
+     * From this, I learned
+     * 1. Many bad IPs have a larger number of harmless reports opposed to malicious reports, and so malicious presence should outweigh harmless volume.
+     * 2. Repeating conditions (such as # of malicous > 0) introduce ambiguity. As a software engineer, I should ask myself "If multiple rules match, which one should win?"
+     * 3. harmless == 0 is extremely rare
+   - Using this feedback, I adjusted the risk scoring model to follow a layered model where red flags would immediately result in a higher risk score, mixed signals would result in a middle risk score, and a general, safe consensus would result in a lower risk score. Picket will adopt a security philosophy where if there is a slight hint of malicious-ness, the score can never be "Low". Although false positives are possible and prevalent, if there is a slight chance that a website or IP is malicious, then the user should be made aware of that slight chance. That one malicious report could be fake, but it's just like exploring a sound in the middle of the woods at night: better to not find out what it really is.
+   - Because I would rather have a website be rated more malicious than it is over rating it as less malicious than it actually is, I will construct the if statement hierarchy to move from a risk score rating of High > Medium-High > Medium > Low - Medium > Low. As such, I designed this second draft for the risk scoring logic:
+   ```
+   If malicious_count > 0 and (suspicious_count > 0 or reputation < 0 or timeout_count > 0), Risk == High
+   If malicious_count > 0 and reputation <= 0 and suspicious_count > 0, Risk == Medium-High
+   If malicious_count > 0 and reputation >= 0 and suspicious_count == 0, Risk == Medium 
+   If malicious_count == 0 and harmless_count > 0 and reputation > 0, Risk == Low-Medium
+   If malicious_count == 0 and harmless_count > 0 and reputation > 0 and suspicious_count == 0 and timeout_count == 0, Risk == Low
+   ```
 
 ### Inspiration
 
-The idea for Picket came from observing how much time security practitioners spend manually checking indicators across different tools. I wanted to build a system that performs this repetitive guard duty automatically, allowing analysts to focus on higher-level decision-making.
+The idea for Picket came from observing how much time security practitioners spend manually checking indicators across different tools. I wanted to build a system that performs this repetitive guard duty automatically, allowing analysts to focus on higher-level decision-making. Creating this system would additionally help me learn Full-Stack and associated skills and concepts, such as APIs, JavaScript, Node.js (Express, Axios, npm), React, and Firebase. 
 
 ### What I Learned
 
-TBD
+Working on Picket has taught me:
+- The foundations of JavaScript <--- Day One
+- What an Advanced Programming Interface (API) is and how they work within Full-Stack applications <--- Day One
+- How an API Request makes a HTTP GET request to a specific URL with 1) an API key and 2) input (e.g. an IP or domain) to receive a JSON back, all done through the backend <--- Day One
+- What Node.js is (a runtime environment that allows JavaScript to run outside of the browser, where it used to be confinded, and includes the npm package manager and node for runtime) and how to install it <--- Day One
+- How to setup the backend of a full-stack application using PowerShell, File Explorer, and Visual Studio Code <--- Day One
+- What Axios is (a library that lets the backend make HTTP requests to other servers, protecting against XSRF and providing automatic JSON transformation) and how to install it <--- Day One
+- Why an API key should be stored within an environment variable (ensures confidentiality) <--- Day Two
+- How to make an API Request using my API Key, receiving a JSON back to scan for data <--- Day Two
+- How to plan and design a layered risk scoring system to avoid ambiguity and prevent false lows. <--- Day Two
 
 ### Potential Impact
 
