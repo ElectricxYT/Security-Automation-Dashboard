@@ -89,7 +89,7 @@ All third-party API calls will be handled exclusively by the backend to protect 
 ### Prerequisites
 
 * Node.js (v18+ recommended)
-* npm or yarn
+* npm or yarn (for Picket, I opted for npm)
 * API keys for VirusTotal and AbuseIPDB
 
 ### Backend Setup
@@ -108,9 +108,16 @@ On Day One, I began by planning how to approach and setup my project.
  - Because the first step is for a user to input either a domain or IP Address, I decided to start with setting up the backend of Picket.
  - Like with my Password Strength Analyzer Project, I first brainstormed how the provided domain or IP Address's risk score would be calculated. I settled on a scale of "Low, Low-Medium, Medium, Medium-High, High" for its more intuitive and user friendly. The backend processes will equate all 5 with rule based lables (ex: if flagged by >= 4 venders, then risk score = Medium-High).
  - The signals received from both APIs (Number of vendors flagging malicious, abuse confidence score, etc) will factor into the risk score of the domain/IP Address. As such, Picket assigns risk labels based on the presence and strength of known malicious indicators reported by trusted threat intelligence sources (VirusTotal and AbuseIPDB).
- - I registered both a VirusTotal and AbuseIPDB account to gain access to both of their APIs. I then ran a test request to each of them and searched through the JSON responses for useful signals to use when calculating a domain/IP Address's risk score. 
- - I learned what Node.js is (a free, open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser) and began 
-
+ - I registered both a VirusTotal and AbuseIPDB account to gain access to both of their APIs. I then ran a test request to each of them and searched through the JSON responses for useful signals to use when calculating a domain/IP Address's risk score.
+   * First, I learned how to make API requests to both VirusTotal and AbuseIPDB.
+   * Then, I decided to have Picket use Axios to make HTTP requests from the Express backend. Axios will do only one thing: send HTTP requests and return responses.
+   * Next, I began setting up my backend to test requesting from the APIs. I first downloaded Visual Studio Code as well as Node.js and its corresponding npm. I created a folder for the backend of Picket and    opened it with both VS Code and Powershell, running "node -v" and "npm -v" in the Powershell terminal to ensure that both were installed correctly. I then used the "npm init" command to create the package.json, which immediately appeared within my backend folder and within Visual Studio Code.
+   * After that, it was time to install Express, what will be the middle man between the frontend and the two APIs. I did this by running "npm install express" in Powershell, to which "package-lock.json" and a dropdown called "node_modules" appeared.
+   * To test my backend, I created a file within VS Code called "index.js" and made a HTTP GET request to PORT 3000, outputting to the console "Picket backend is running" to test whether Picket's Express backend was up and running.
+   * Next, it was time to download Axios. To do this, I ran "npm install axios" in the Powershell terminal.
+   * Finally, I stored my API key within an environmental variable so as to ensure confidentiality. So that Node can read the file in which I stored my API key, I installed dotenv. 
+### Day Two
+On Day Two, I finished testing requests to both APIs and decided on which signals to use for risk scoring.
 
 
 ### Inspiration
