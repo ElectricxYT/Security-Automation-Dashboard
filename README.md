@@ -154,6 +154,16 @@ On Day Two, I finished testing requests to both APIs, decided on which signals t
    If malicious_count == 0 and harmless_count > 0 and reputation > 0, Risk == Low-Medium
    If malicious_count == 0 and harmless_count > 0 and reputation > 0 and suspicious_count == 0 and timeout_count == 0, Risk == Low
    ```
+### Day Three
+On Day Three, I implemented the risk scoring algorithm, verified that the IP request to VirusTotal worked end-to-end, tweaked the risk scoring further, and configured VirusTotal to take in domains, as well as set up the AbuseIPDB API
+ - I translated the second draft of my risk scoring algorithm into JavaScript and wrote the code below the imports and constraints and above the routes.
+ - To verify that everything worked end-to-end, I ran the backend using the 'node index.js' command in PowerShell and tested Google's IP Address (8.8.8.8). See "Day 3 Progress" under the Screenshots / Demo section below.
+ - Then, I duplicated the code for requesting IP data from VirusTotal and altered it to work for domains.
+ - To implement AbuseIPDB, I followed the same steps as implementing VirusTotal:
+   * I added the AbuseIPDB API Key to the .env file
+   * I followed the exact same format as VirusTotal's get functions. Because AbuseIPDB doesn't have the stats "harmless" or "reputation", I created a new calculateRisk method that omits taking in reputation as a parameter and similarly evaluates the score to the calculateRisk method that VirusTotal will use. 
+   * Because AbuseIPDB is IP focused, any domain provided will need to be resolved to an IP using Node's DNS (Domain Name Sysem, Port 53, translates website names into IP addresses) module
+   * Finally, since AbuseIPDB does not provide the number of malicious, harmless, suspicious, or timeout reports from security engines, I decided to map the abuseConfidenceScore onto these values. That way, the risk functions will treat both APIs consistently. I chose a threshold of 50 so that a majority (> 50) will lead to an increased negative report. 
 
 ### Inspiration
 
@@ -161,16 +171,7 @@ The idea for Picket came from observing how much time security practitioners spe
 
 ### What I Learned
 
-Working on Picket has taught me:
-- The foundations of JavaScript <--- Day One
-- What an Advanced Programming Interface (API) is and how they work within Full-Stack applications <--- Day One
-- How an API Request makes a HTTP GET request to a specific URL with 1) an API key and 2) input (e.g. an IP or domain) to receive a JSON back, all done through the backend <--- Day One
-- What Node.js is (a runtime environment that allows JavaScript to run outside of the browser, where it used to be confinded, and includes the npm package manager and node for runtime) and how to install it <--- Day One
-- How to setup the backend of a full-stack application using PowerShell, File Explorer, and Visual Studio Code <--- Day One
-- What Axios is (a library that lets the backend make HTTP requests to other servers, protecting against XSRF and providing automatic JSON transformation) and how to install it <--- Day One
-- Why an API key should be stored within an environment variable (ensures confidentiality) <--- Day Two
-- How to make an API Request using my API Key, receiving a JSON back to scan for data <--- Day Two
-- How to plan and design a layered risk scoring system to avoid ambiguity and prevent false lows. <--- Day Two
+TBD
 
 ### Potential Impact
 
@@ -205,7 +206,8 @@ To assist me in completing my project, I employed the help of ChatGPT. To ensure
 
 For this project, I used ChatGPT to:
 
-* Plan out the risk scoring approach 
+* Plan out the risk scoring approach
+* Debug my index.js file
 
 **Example:**
 
@@ -215,13 +217,32 @@ Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: 
 
 ## Future Work
 
-TBD
+- Update risk scoring algorithm to involve ratios for security engine reports
 
 ---
 
 ## Screenshots / Demo
+**Day 3 Progress (Backend Test)**
 
-*(Will add screenshots or a short demo GIF here once available)*
+<img width="345" height="292" alt="Day3BackendTest" src="https://github.com/user-attachments/assets/7da94b5d-2d3a-4b24-965f-7484a93edfd2" />
+
+(The result of my code in index.js on the localhost webpage, Port 3000, requesting IP 1.1.1.1 from VirusTotal)
+
+
+<img width="345" height="292" alt="Day3BackendTest2" src="https://github.com/user-attachments/assets/05dcd2ca-2114-4bfb-90e9-0a32c258df37" />
+
+(The result of my code in index.js on the localhost webpage, Port 3000, requesting domain google.com from VirusTotal)
+
+<img width="345" height="292" alt="Day3BackendTest3" src="https://github.com/user-attachments/assets/224ebf23-8377-4920-99bb-a28eda3947e8" />
+
+(The result of my code in index.js on the localhost webpage, Port 3000, requesting IP 8.8.8.8 from AbuseIPDB)
+
+<img width="345" height="292" alt="Day3BackendTest4" src="https://github.com/user-attachments/assets/27714c9a-d79a-4444-91fa-84df431fc0b5" />
+
+(The result of my code in index.js on the localhost webpage, Port 3000, requesting domain google.com from AbuseIPDB)
+
+
+
 
 ---
 
