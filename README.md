@@ -2,21 +2,21 @@
 
 ## Overview
 
-**Picket** will be a full-stack Security Automation Dashboard that acts as an automated sentry for threat intelligence analysis. Much like a military picket performs guard duty by monitoring and reporting potential threats, Picket continuously evaluates suspicious indicators using multiple security data sources and delivers a clear, automated verdict.
+**Picket** is a full-stack Security Automation Dashboard that acts as an automated sentry for threat intelligence analysis. Much like a military picket performs guard duty by monitoring and reporting potential threats, Picket continuously evaluates suspicious indicators using multiple security data sources and delivers a clear, automated verdict.
 
-Instead of relying on manual lookups across different platforms, Picket aggregates and correlates threat intelligence from multiple APIs, applies deterministic scoring logic, and presents the results through an interactive dashboard.
+Instead of relying on manual lookups across different platforms, Picket aggregates and correlates threat intelligence from multiple APIs, applies deterministic scoring logic, and presents the results through an interactive dashboard to inform users on the security of websites and IP Adresses. 
 
 ## Why This Project?
 
-As an aspiring Cybersecurity Engineer, this project is being built as a foundational project aligned with my interest in security automation and backend engineering. I hope to use this project to learn new skills relating to JavaScript (TypeScript), React, HTML/CSS, and Express, thus furthering my goal of expanding my skill set and acquiring a diverse Computer Science education/skillset.
+This project was built as a foundational project aligned with my interest in security automation and backend engineering. I hope to use this project to learn new skills relating to JavaScript, React, HTML/CSS, Express, and Firebase, thus furthering my goal of expanding my skill set and acquiring a diverse Computer Science education/skillset.
 
 ## How Will it Work?
 
 Picket will start out as a Minimum Viable Project (MVP) Security Automation Dashboard that will:
 1. Take either a domain or an IP Address from the user via a React GUI
-2. Analyze that domain or ip address to determine whether it is risky or not by querying multiple threat intelligence APIs
-3. Store that domain/ip address and its score within the Firebase database (indicator value, indicator type, timestamp, API results, final risk score, and verdict)
-4. Output to the user the final risk score, the verdict label, the breakdown by source, and (possibly) a short explanation
+2. Analyze that domain or ip address to determine whether it is risky or not by querying multiple threat intelligence APIs (VirusTotal and AbusIPDB, to start)
+3. Store that domain/ip address and its score within a Firebase database (indicator value, indicator type, timestamp, API results, final risk score, and verdict)
+4. Output to the user the final risk score, the verdict label, and the breakdown by source
 
 Picket will use two threat intelligence APIs so that Picket doesn't trust just one source blindly. Discrepancies will result in a slightly higher risk score. The threat intelligence APIs that Picket will use are:
 - VirusTotal
@@ -42,7 +42,7 @@ Picket will use Firebase Firestore as its database to increase setup speed and m
 ### Frontend
 
 * React
-* TypeScript
+* JavaScript
 * HTML/CSS
 
 ### Backend
@@ -50,7 +50,7 @@ Picket will use Firebase Firestore as its database to increase setup speed and m
 * Node.js
 * Express
 * Axios
-* TypeScript
+* JavaScript
 
 ### Database
 
@@ -91,15 +91,7 @@ All third-party API calls will be handled exclusively by the backend to protect 
 * Node.js (v18+ recommended)
 * npm or yarn (for Picket, I opted for npm)
 * API keys for VirusTotal and AbuseIPDB
-
-### Backend Setup
-
-TBD
-
-### Frontend Setup
-
-TBD
-
+  
 ---
 
 ## Learning Journey
@@ -180,15 +172,24 @@ At last, the base of Picket's backend was complete! It was then time to setup th
  - After that, I worked on index.html. index.html handles the layout and input as well as links style.css and loads app.js.
  - To see the frontend webpage as I worked, I downloaded the Live Server extension via Visual Studio Code (See Screenshots/Demo).
  - After completing the index.html, style.css, and app.js files, I tested Picket's front end by first opening the backend and then loading the website for the frontend (See Screenshots/Demo). 
-   
+### Day Five
+On Day Five, I wrapped up the core of what would be Picket by moving the frontend to React, implementing a Firebase Firestore database, and displaying the stats collected from both APIs on the frontend once an IP Address or domain is queried, simultaneously expanded UI data. 
+ - First, I created the React app and implemented it into the frontend by using Vite, with the experimental Rolldown included. Once it was installed, I deleted the src/assets/ and app.css files, changed my PowerShell directory to the picket-frontend folder I created, and then used "npm run dev" to run React. This provided me with a base webpage that proved React was running correctly.
+ - Then, I began rebuilding the Picket webpage. I started by re-implementing the input button by altering the code within app.jsx. After that, I added results panels for both VirusTotal and AbuseIPDB so that the user can see the stats that contributed to Picket's final risk score (See Screenshots/Demo).
+ - After making the UI more resilient to crashes, I repositioned the UI elements to be more centered and mapped the risk labels to respective colors (e.g, Low = bright green, High = Red).
+ - Finally, I ensured that two panels containing the stats from both APIs would be displayed underneath the input bar once the user submitted an IP Address or domain.
+ - Once the frontend was complete, it was time to implement the Firestore database. I first created a project for Picket via firebase.google.com.
+ - Then, I set up a collection (query: 8.8.8.8, type: ip) and created a firebase.js file within the src file of the frontend.
+ - Finally, I imported both the Firebase app and Firestore, configured the required firebase information for the API (API key, appId, projectId, etc), and initialized both Firebase and Firestore.
+   * To ensure that the database was configured correctly, I tested it with a query to both the 8.8.8.8 ip and the google.com domain. 
 
 ### Inspiration
 
-The idea for Picket came from observing how much time security practitioners spend manually checking indicators across different tools. I wanted to build a system that performs this repetitive guard duty automatically, allowing analysts to focus on higher-level decision-making. Creating this system would additionally help me learn Full-Stack and associated skills and concepts, such as APIs, JavaScript, Node.js (Express, Axios, npm), React, and Firebase. 
+I decided to work on creating a security automation dashboard to gain experience as a full-stack developer while simultaneously learning how security automation dashboards function and how APIs make them possible, all through a hands-on project. The idea for Picket came from observing how much time security practitioners spend manually checking indicators across different tools. I wanted to build a system that performs this repetitive guard duty automatically, allowing analysts to focus on higher-level decision-making. Picket will eventually host dozens of security engine APIs, thus providing security professionals with reliable and accurate information on domains and IPs. 
 
 ### What I Learned
 
-TBD
+Working on Picket has taught me the immense amount of work that goes into creating applications that seem simple on paper, but are really complex in practice. I learned the differences between an application's frontend and backend and how both work in tandem to form an app. Also, working on Picket has taught me the foundations of JavaScript and HTML/CSS. 
 
 ### Potential Impact
 
@@ -226,7 +227,8 @@ For this project, I used ChatGPT to assist me with:
 * Planning out the risk scoring approach
 * Debugging my index.js file
 * Debugging my app.js file
-* Translating my webpage design into HTML and CSS 
+* Translating my webpage design into HTML and CSS
+* Making the React UI more resilient
   
 
 **Example:**
@@ -264,6 +266,8 @@ Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: 
 
 (The result of my code in index.js on the localhost webpage, Port 3000, requesting domain google.com from AbuseIPDB)
 
+**Day 4 Progress (Frontend Test)**
+
 <img width="345" height="456" alt="Day4FrontEndWork" src="https://github.com/user-attachments/assets/19ab95ae-895c-4943-ac4a-fbfd9e0554d8" />
 
 (Working on Picket's frontend during Day 4, side by side with code)
@@ -275,6 +279,22 @@ Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: 
 <img width="345" height="502" alt="Day4FrontEndWork3" src="https://github.com/user-attachments/assets/a115b451-4299-4a36-9638-403a5a5473ab" />
 
 (Testing Picket's webpage on handling domains)
+
+**Day 5 Work (React Implementation and Deployment)**
+
+<img width="345" height="592" alt="Day5ReactImplementation" src="https://github.com/user-attachments/assets/aecee61b-eacd-4262-8628-5892235b6bb2" />
+
+(Moving the frontend to React)
+
+<img width="345" height="592" alt="Day5ReactImplementation2" src="https://github.com/user-attachments/assets/67d14209-6b7f-4e6f-aaa0-509d32411e78" />
+
+(Re-implementing the input bar and two risk score labels )
+
+<img width="345" height="592" alt="Day5ReactImplementation3" src="https://github.com/user-attachments/assets/5860e5d7-f0cf-4515-91cb-852d7b8c8ac2" />
+
+(Centerting everything)
+
+
 
 
 
