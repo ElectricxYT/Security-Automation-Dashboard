@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Picket Security Automation Center</title>
+    <link rel="stylesheet" href="style.css" /> 
+</head>
+<body>
+    
+    <div class="container"> 
+    <h1>Picket</h1>
+    <h2 class="subtitle">Security Automation Center</h2>
+    
+    <p class="prompt">Enter an IP Address or Domain to check its risk level:</p>
+
+    <div class="input-group">
+        <input
+            type="text"
+            id="targetInput"
+            placeholder="8.8.8.8 or google.com"
+            onkeydown="handleEnter(event)"
+        />
+        <button onclick="submitTarget()">Submit</button>
+    </div>
+
+    <div id="results" class="results hidden">
+  <h3 id="verdictLabel"></h3>
+
+  <div class="risk-bar-container">
+    <div id="riskBar" class="risk-bar"></div>
+  </div>
+
+  <p id="scoreText"></p>
+</div>
+</div>
+
+ <script src="app.js"></script>
+</body>
+</html>
