@@ -163,7 +163,24 @@ On Day Three, I implemented the risk scoring algorithm, verified that the IP req
    * I added the AbuseIPDB API Key to the .env file
    * I followed the exact same format as VirusTotal's get functions. Because AbuseIPDB doesn't have the stats "harmless" or "reputation", I created a new calculateRisk method that omits taking in reputation as a parameter and similarly evaluates the score to the calculateRisk method that VirusTotal will use. 
    * Because AbuseIPDB is IP focused, any domain provided will need to be resolved to an IP using Node's DNS (Domain Name Sysem, Port 53, translates website names into IP addresses) module
-   * Finally, since AbuseIPDB does not provide the number of malicious, harmless, suspicious, or timeout reports from security engines, I decided to map the abuseConfidenceScore onto these values. That way, the risk functions will treat both APIs consistently. I chose a threshold of 50 so that a majority (> 50) will lead to an increased negative report. 
+   * Finally, since AbuseIPDB does not provide the number of malicious, harmless, suspicious, or timeout reports from security engines, I decided to map the abuseConfidenceScore onto these values. That way, the risk functions will treat both APIs consistently. I chose a threshold of 50 so that a majority (> 50) will lead to an increased negative report.
+### Day Four
+On Day Four, I finished the backend of Picket and created the base of the frontend. 
+ - I started by creating a calculateFinalRisk method that would take in the risk scores from both VirusTotal and AbuseIPDB and come to a verdict on what the risk score should be. The higher risk score wins, as false negatives are always better than false positives.
+ - Then, I consolidated all four endpoints into two endpoints that query both APIs when passed either an IP or domain.
+ - Next, I implemented risk scale mapping to convert each of the five risk scores to numbers, thus allowing easier implementation with the frontend.
+At last, the base of Picket's backend was complete! It was then time to setup the frontend. Because the starting goal of Picket was to get setup as a MVP, I wanted to keep the frontend simple for now. As such, I designed the frontend file structure as follows:
+   ```
+   frontend/
+      ├── index.html
+      ├── style.css
+      └── app.js
+   ```
+ - In order to prevent my browser from blocking requests from my localhost site, I downloaded CORS to enable browser fetch.
+ - After that, I worked on index.html. index.html handles the layout and input as well as links style.css and loads app.js.
+ - To see the frontend webpage as I worked, I downloaded the Live Server extension via Visual Studio Code (See Screenshots/Demo).
+ - After completing the index.html, style.css, and app.js files, I tested Picket's front end by first opening the backend and then loading the website for the frontend (See Screenshots/Demo). 
+   
 
 ### Inspiration
 
@@ -204,10 +221,13 @@ TBD
 
 To assist me in completing my project, I employed the help of ChatGPT. To ensure that I learned from this project, I set ChatGPT as my assistant and commited into its memory that I will be the one "calling the shots". I then forbade ChatGPT from providing me with full answers or writing out full code for me, and instructed it to instead lead me in the right direction when prompted. 
 
-For this project, I used ChatGPT to:
+For this project, I used ChatGPT to assist me with:
 
-* Plan out the risk scoring approach
-* Debug my index.js file
+* Planning out the risk scoring approach
+* Debugging my index.js file
+* Debugging my app.js file
+* Translating my webpage design into HTML and CSS 
+  
 
 **Example:**
 
@@ -218,6 +238,9 @@ Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: 
 ## Future Work
 
 - Update risk scoring algorithm to involve ratios for security engine reports
+- Add more APIs to improve security feedback
+- Create a logo for Picket and "pretty up" the webpage
+- 
 
 ---
 
@@ -241,6 +264,17 @@ Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: 
 
 (The result of my code in index.js on the localhost webpage, Port 3000, requesting domain google.com from AbuseIPDB)
 
+<img width="345" height="456" alt="Day4FrontEndWork" src="https://github.com/user-attachments/assets/19ab95ae-895c-4943-ac4a-fbfd9e0554d8" />
+
+(Working on Picket's frontend during Day 4, side by side with code)
+
+<img width="345" height="511" alt="Day4FrontEndWork2" src="https://github.com/user-attachments/assets/1dc84ed6-cd01-4c8b-ba54-6a3027141e1f" />
+
+(Testing Picket's webpage on handling IP Addresses)
+
+<img width="345" height="502" alt="Day4FrontEndWork3" src="https://github.com/user-attachments/assets/a115b451-4299-4a36-9638-403a5a5473ab" />
+
+(Testing Picket's webpage on handling domains)
 
 
 
