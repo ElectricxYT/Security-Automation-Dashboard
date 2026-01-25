@@ -15,23 +15,23 @@ Features
 
 ## Installation
 
- - Navigate to frontend/: ```textcd frontend```
- - Install dependencies: ```textnpm install```
+ - Navigate to frontend/: ```cd frontend```
+ - Install dependencies: ```npm install```
 
 ## Configuration
 
-- Update API base URL in src/App.tsx or env: ``` textREACT_APP_API_URL=https://your-backend-url ```
+- Update API base URL in src/App.tsx or env: ```REACT_APP_API_URL=https://your-backend-url```
 - For local: ``` http://localhost:3000 ```.
 
 ## Running Locally
 
-- Start dev server: ``` textnpm run dev ```
+- Start dev server: ```npm run dev```
 - Access at ``` http://localhost:5173 ```.
 
 ## Build & Deployment
 
-- Build: ``` npm run build. ```
-- Deploy to Firebase Hosting: ``` firebase deploy --only hosting. ```
+- Build: ```npm run build```.
+- Deploy to Firebase Hosting: ```firebase deploy --only hosting```.
 
 ## Project Structure
 ```
