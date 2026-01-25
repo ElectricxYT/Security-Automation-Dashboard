@@ -22,6 +22,7 @@ const riskColors = {
 };
 
 // Inline styles for simplicity
+// Skeleton generated with ChatGPT
 const styles = {
   page: {
   backgroundColor: "#0b1220",
@@ -84,9 +85,7 @@ function App() {
   setResult(null);
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/verdict/${input}`
-    );
+    const response = await fetch(`/verdict/${input}`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch verdict");
@@ -233,8 +232,6 @@ function AbuseIPDBPanel({ abuse }) {
     </div>
   );
 }
-
-
 
 
 export default App;
