@@ -10,7 +10,7 @@ Instead of relying on manual lookups across different platforms, Picket aggregat
 
 This project was built as a foundational project aligned with my interest in security automation and backend engineering. I hope to use this project to learn new skills relating to JavaScript, React, HTML/CSS, Express, and Firebase, thus furthering my goal of expanding my skill set and acquiring a diverse Computer Science education/skillset.
 
-## How Will it Work?
+## How Does it Work?
 
 Picket will start out as a Minimum Viable Project (MVP) Security Automation Dashboard that will:
 1. Take either a domain or an IP Address from the user via a React GUI
@@ -23,6 +23,10 @@ Picket will use two threat intelligence APIs so that Picket doesn't trust just o
 - AbuseIPDB
 
 Picket will use Firebase Firestore as its database to increase setup speed and maintain a low risk of failure. 
+
+## App Link
+
+Test out Picket: https://picket-sad.web.app/
 
 ---
 
