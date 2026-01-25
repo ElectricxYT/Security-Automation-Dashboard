@@ -183,6 +183,7 @@ On Day Five, I wrapped up the core of what would be Picket by moving the fronten
  - Finally, I imported both the Firebase app and Firestore, configured the required firebase information for the API (API key, appId, projectId, etc), and initialized both Firebase and Firestore.
    * To ensure that the database was configured correctly, I tested it with a query to both the 8.8.8.8 ip and the google.com domain.
  - Lastly, I deployed Picket using the Firebase CLI. I ran "firebase init hosting" and "npm run build" in PowerShell from within the frontend directory to begin initializing the deployment before running "firebase deploy" to deploy Picket and receive the Host URL. Then, I ran "firebase init functions" to add Cloud functions so Firebase could host Picket's Express backend. After that, I stored both API keys as secrets and ran "firebase deploy --only functions" to deploy Picket
+   *I had a really hard time deploying Picket via Firebase, as my code continued to request from the localhost website that ran on Port 3000 instead of querying the verdict to Firebase. It was all solved upon downloading Google Cloud SDK (Google Cloud CLI) and updating the IAM policy for service. 
    * Picket Link: https://picket-sad.web.app/
 
 ### Inspiration
