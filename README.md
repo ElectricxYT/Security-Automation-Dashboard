@@ -181,7 +181,8 @@ On Day Five, I wrapped up the core of what would be Picket by moving the fronten
  - Once the frontend was complete, it was time to implement the Firestore database. I first created a project for Picket via firebase.google.com.
  - Then, I set up a collection (query: 8.8.8.8, type: ip) and created a firebase.js file within the src file of the frontend.
  - Finally, I imported both the Firebase app and Firestore, configured the required firebase information for the API (API key, appId, projectId, etc), and initialized both Firebase and Firestore.
-   * To ensure that the database was configured correctly, I tested it with a query to both the 8.8.8.8 ip and the google.com domain. 
+   * To ensure that the database was configured correctly, I tested it with a query to both the 8.8.8.8 ip and the google.com domain.
+ - Lastly, I deployed Picket using the Firebase CLI. I ran "firebase init hosting" and "npm run build" in PowerShell from within the frontend directory to begin initializing the deployment before running "firebase deploy" to deploy Picket and receive the Host URL. Then, I ran "firebase init functions" to add Cloud functions so Firebase could host Picket's Express backend. After that, I stored both API keys as secrets and ran "firebase deploy --only functions" to deploy Picket
 
 ### Inspiration
 
