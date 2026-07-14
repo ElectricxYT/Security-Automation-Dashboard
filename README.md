@@ -6,6 +6,10 @@
 
 Instead of relying on manual lookups across different platforms, Picket aggregates and correlates threat intelligence from multiple APIs, applies deterministic scoring logic, and presents the results through an interactive dashboard to inform users on the security of websites and IP Adresses. 
 
+## App Link
+
+Test out Picket: https://picket-sad.web.app/
+
 ## Why This Project?
 
 This project was built as a foundational project aligned with my interest in security automation and backend engineering. I hope to use this project to learn new skills relating to JavaScript, React, HTML/CSS, Express, and Firebase, thus furthering my goal of expanding my skill set and acquiring a diverse Computer Science education/skillset.
@@ -24,9 +28,6 @@ Picket will use two threat intelligence APIs so that Picket doesn't trust just o
 
 Picket will use Firebase Firestore as its database to increase setup speed and maintain a low risk of failure. 
 
-## App Link
-
-Test out Picket: https://picket-sad.web.app/
 
 ---
 
