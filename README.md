@@ -189,6 +189,10 @@ On Day Five, I wrapped up the core of what would be Picket by moving the fronten
  - Lastly, I deployed Picket using the Firebase CLI. I ran "firebase init hosting" and "npm run build" in PowerShell from within the frontend directory to begin initializing the deployment before running "firebase deploy" to deploy Picket and receive the Host URL. Then, I ran "firebase init functions" to add Cloud functions so Firebase could host Picket's Express backend. After that, I stored both API keys as secrets and ran "firebase deploy --only functions" to deploy Picket
    *I had a really hard time deploying Picket via Firebase, as my code continued to request from the localhost website that ran on Port 3000 instead of querying the verdict to Firebase. It was all solved upon downloading Google Cloud SDK (Google Cloud CLI) and updating the IAM policy for service. 
    * Picket Link: https://picket-sad.web.app/
+### July 14, 2026
+Today, I redeployed Picket after upgrading my Firebase account from Spark to Blaze (Pay-As-You-Go). The free Spark plan my account was previously defaulted to prevented the Cloud Functions from executing, thus Picket's failure to fetch data for its risk scoring. 
+
+I also moved all Firestore writes from the frontend to the backend. Initially, the React frontend wrote directly to Firestore during development. Moving all database writes into the Cloud Function (backend) made it so that only trusted server-side code could modify the database. This follows the principle of least privilege, reduces the attack surface, and prevents clients from writing arbitrary data.
 
 ### Inspiration
 
