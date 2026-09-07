@@ -261,48 +261,48 @@ Looking for ideas on how to approach the risk scoring, I prompted ChatGPT with: 
 ## Screenshots / Demo
 **Day 3 Progress (Backend Test)**
 
-<img width="345" height="292" alt="Day3BackendTest" src="https://github.com/user-attachments/assets/7da94b5d-2d3a-4b24-965f-7484a93edfd2" />
+<img width="640" height="390" alt="Day3BackendTest" src="https://github.com/user-attachments/assets/7da94b5d-2d3a-4b24-965f-7484a93edfd2" />
 
 (The result of my code in index.js on the localhost webpage, Port 3000, requesting IP 1.1.1.1 from VirusTotal)
 
 
-<img width="345" height="292" alt="Day3BackendTest2" src="https://github.com/user-attachments/assets/05dcd2ca-2114-4bfb-90e9-0a32c258df37" />
+<img width="640" height="390" alt="Day3BackendTest2" src="https://github.com/user-attachments/assets/05dcd2ca-2114-4bfb-90e9-0a32c258df37" />
 
 (The result of my code in index.js on the localhost webpage, Port 3000, requesting domain google.com from VirusTotal)
 
-<img width="345" height="292" alt="Day3BackendTest3" src="https://github.com/user-attachments/assets/224ebf23-8377-4920-99bb-a28eda3947e8" />
+<img width="640" height="390" alt="Day3BackendTest3" src="https://github.com/user-attachments/assets/224ebf23-8377-4920-99bb-a28eda3947e8" />
 
 (The result of my code in index.js on the localhost webpage, Port 3000, requesting IP 8.8.8.8 from AbuseIPDB)
 
-<img width="345" height="292" alt="Day3BackendTest4" src="https://github.com/user-attachments/assets/27714c9a-d79a-4444-91fa-84df431fc0b5" />
+<img width="640" height="390" alt="Day3BackendTest4" src="https://github.com/user-attachments/assets/27714c9a-d79a-4444-91fa-84df431fc0b5" />
 
 (The result of my code in index.js on the localhost webpage, Port 3000, requesting domain google.com from AbuseIPDB)
 
 **Day 4 Progress (Frontend Test)**
 
-<img width="345" height="456" alt="Day4FrontEndWork" src="https://github.com/user-attachments/assets/19ab95ae-895c-4943-ac4a-fbfd9e0554d8" />
+<img width="640" height="390" alt="Day4FrontEndWork" src="https://github.com/user-attachments/assets/19ab95ae-895c-4943-ac4a-fbfd9e0554d8" />
 
 (Working on Picket's frontend during Day 4, side by side with code)
 
-<img width="345" height="511" alt="Day4FrontEndWork2" src="https://github.com/user-attachments/assets/1dc84ed6-cd01-4c8b-ba54-6a3027141e1f" />
+<img width="640" height="390" alt="Day4FrontEndWork2" src="https://github.com/user-attachments/assets/1dc84ed6-cd01-4c8b-ba54-6a3027141e1f" />
 
 (Testing Picket's webpage on handling IP Addresses)
 
-<img width="345" height="502" alt="Day4FrontEndWork3" src="https://github.com/user-attachments/assets/a115b451-4299-4a36-9638-403a5a5473ab" />
+<img width="640" height="390" alt="Day4FrontEndWork3" src="https://github.com/user-attachments/assets/a115b451-4299-4a36-9638-403a5a5473ab" />
 
 (Testing Picket's webpage on handling domains)
 
 **Day 5 Work (React Implementation and Deployment)**
 
-<img width="345" height="592" alt="Day5ReactImplementation" src="https://github.com/user-attachments/assets/aecee61b-eacd-4262-8628-5892235b6bb2" />
+<img width="640" height="390" alt="Day5ReactImplementation" src="https://github.com/user-attachments/assets/aecee61b-eacd-4262-8628-5892235b6bb2" />
 
 (Moving the frontend to React)
 
-<img width="345" height="592" alt="Day5ReactImplementation2" src="https://github.com/user-attachments/assets/67d14209-6b7f-4e6f-aaa0-509d32411e78" />
+<img width="640" height="390" alt="Day5ReactImplementation2" src="https://github.com/user-attachments/assets/67d14209-6b7f-4e6f-aaa0-509d32411e78" />
 
 (Re-implementing the input bar and two risk score labels )
 
-<img width="345" height="592" alt="Day5ReactImplementation3" src="https://github.com/user-attachments/assets/5860e5d7-f0cf-4515-91cb-852d7b8c8ac2" />
+<img width="640" height="390" alt="Day5ReactImplementation3" src="https://github.com/user-attachments/assets/5860e5d7-f0cf-4515-91cb-852d7b8c8ac2" />
 
 (Centerting everything)
 
